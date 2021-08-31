@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" position="status" method="upgrade">
+	<name>IPInfo</name>
+	<author>@Javi_Mata</author>
+	<creationDate>August 2021</creationDate>
+	<copyright>Copyright (C) 2014 - All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>javimata@gmail.com</authorEmail>
+	<authorUrl>www.javimata.com</authorUrl>
+	<version>1.0.0</version>
+	<description><![CDATA[IP Info - Save ip info]]></description>
+
+	<files>
+		<filename module="mod_ipinfo">mod_ipinfo.php</filename>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+
+				<field name="scriptcode" type="textarea" filter="raw" default="" label="Script code" />
+
+			</fieldset>
+		</fields>
+
+	</config>
+</extension>
