@@ -15,19 +15,11 @@ require "functions.php";
 
 $ip_address = getUIP();
 
-$db    = JFactory::getDBO();
-$query = 'SELECT ip FROM #__ipinfo WHERE ip = "' . $ip_address . '"';
-$db->setQuery($query);  
-$ip = $db->loadResult();
+if ( $ip_address ) {
 
-if ( $ip ) {
-    
-    echo "<div class='text-muted d-none'>".$ip_address."</div>";
-
-    /*
     $client = new IPinfo();
     $details = $client->getDetails($ip_address);
-    
+
     $info = [
         "ip" => $details->ip,
         "hostname" => $details->hostname,
@@ -40,33 +32,19 @@ if ( $ip ) {
         "timezone" => $details->timezone
     ];
 
-    $query = 'UPDATE #__ipinfo SET info = "' . implode("|",$info) . '" WHERE ip = "' . $ip_address . '"';
-    $db->setQuery($query);
-    $db->execute();
-    */
+    ?>
+    <div class="ipinfo">
+        IP: <?php echo $info["ip"]; ?><br>
+        Hostname: <?php echo $info["hostname"]; ?><br>
+        City: <?php echo $info["city"]; ?><br>
+        Region: <?php echo $info["region"]; ?><br>
+        Country: <?php echo $info["country"]; ?><br>
+        Loc: <?php echo $info["loc"]; ?><br>
+        Org: <?php echo $info["org"]; ?><br>
+        Postal: <?php echo $info["postal"]; ?><br>
+        Timezone: <?php echo $info["timezone"]; ?>
+    </div>
 
-} else {
-
-    if ( !preg_match('/bot|crawl|curl|dataprovider|search|get|spider|find|java|majesticsEO|google|yahoo|teoma|contaxe|yandex|libwww-perl|facebookexternalhit/i', $_SERVER['HTTP_USER_AGENT']) ) {
-
-        $client = new IPinfo();
-        $details = $client->getDetails($ip_address);
-
-        $info = [
-            "ip" => $details->ip,
-            "hostname" => $details->hostname,
-            "city" => $details->city,
-            "region" => $details->region,
-            "country" => $details->country,
-            "loc" => $details->loc,
-            "org" => $details->org,
-            "postal" => $details->postal,
-            "timezone" => $details->timezone
-        ];
-
-        $db->setQuery('INSERT INTO #__ipinfo (ip, info) VALUES ("'.$ip_address.'","' . implode("|",$info) . '")');
-        $db->execute();
-
-    }
+    <?php
 
 }
