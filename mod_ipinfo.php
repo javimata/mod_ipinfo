@@ -13,6 +13,7 @@ use ipinfo\ipinfo\IPinfo;
 require "vendor/autoload.php";
 require "functions.php";
 
+$div_class  = $params->get("div_class");
 $ip_address = getUIP();
 
 if ( $ip_address ) {
@@ -21,7 +22,7 @@ if ( $ip_address ) {
     $details = $client->getDetails($ip_address);
 
     ?>
-    <div class="ipinfo">
+    <div class="ipinfo <?php echo $div_class; ?>">
         IP: <?php echo $details->ip; ?><br>
         Hostname: <?php echo $details->hostname; ?><br>
         City: <?php echo $details->city; ?><br>

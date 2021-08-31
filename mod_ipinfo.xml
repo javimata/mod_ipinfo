@@ -18,7 +18,7 @@
 		<fields name="params">
 			<fieldset name="basic">
 
-				<field name="scriptcode" type="textarea" filter="raw" default="" label="Script code" />
+				<field name="div_class" type="text" default="" label="Container class" />
 
 			</fieldset>
 		</fields>
